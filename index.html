@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>2026 Vineyard Race – Stamford Yacht Club</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; padding: 0; background-color: #e8e8e8; font-family: Georgia, 'Times New Roman', serif; }
+    img { display: block; max-width: 100%; height: auto; border: 0; }
+    a { color: #1a3a8f; }
+
+    /* ── CSS Variables ── */
+    :root {
+      --navy:      #0d2257;
+      --navy-dark: #0a1a3a;
+      --blue:      #1a3a8f;
+      --red:       #cc2229;
+      --light-bg:  #f4f7fc;
+      --text:      #333333;
+      --muted:     #555555;
+      --white:     #ffffff;
+    }
+
+    /* ── Page wrapper ── */
+    .page-wrapper {
+      background-color: #e8e8e8;
+      padding: 24px 16px;
+      min-height: 100vh;
+    }
+
+    /* ── Card container ── */
+    .card {
+      background: var(--white);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── Header (logo) ── */
+    .header {
+      background-color: var(--navy);
+      padding: 28px 32px;
+      text-align: center;
+    }
+    .header img {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    /* ── Hero photo ── */
+    .hero-photo {
+      line-height: 0;
+    }
+    .hero-photo img {
+      width: 100%;
+    }
+
+    /* ── Photo credit ── */
+    .photo-credit {
+      background-color: var(--navy);
+      padding: 5px 14px 5px 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      color: #aabce0;
+      font-style: italic;
+      text-align: right;
+    }
+
+    /* ── Generic content section ── */
+    .section {
+      padding: 28px 36px 20px;
+    }
+    .section-navy {
+      background-color: var(--navy);
+      padding: 28px 36px 20px;
+    }
+    .section-sm {
+      padding: 0 36px 20px;
+    }
+    .section-navy-sm {
+      background-color: var(--navy);
+      padding: 0 36px 20px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      padding: 0 36px;
+    }
+    .divider hr {
+      border: none;
+      border-top: 2px solid var(--red);
+      margin: 0;
+    }
+
+    /* ── Typography ── */
+    .body-text {
+      margin: 0 0 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .body-text:last-child { margin-bottom: 0; }
+
+    .body-text-light {
+      margin: 0 0 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #dde4f0;
+    }
+    .body-text-light:last-child { margin-bottom: 0; }
+
+    h1.section-heading {
+      margin: 0 0 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h1.section-heading-light {
+      margin: 0 0 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h2.sub-heading {
+      margin: 0 0 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h2.sub-heading-red {
+      margin: 0 0 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── Pullquote ── */
+    .pullquote {
+      padding: 6px 36px 20px;
+    }
+    .pullquote-inner {
+      border-left: 4px solid var(--red);
+      padding: 12px 20px;
+      background-color: var(--light-bg);
+    }
+    .pullquote-text {
+      margin: 0 0 8px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--blue);
+      font-style: italic;
+    }
+    .pullquote-attribution {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      color: #666666;
+      text-align: right;
+    }
+
+    /* ── Full-width section photo ── */
+    .section-photo {
+      line-height: 0;
+    }
+    .section-photo img { width: 100%; }
+
+    /* ── Course map ── */
+    .course-map {
+      background-color: var(--navy);
+      padding: 0 36px 28px;
+      text-align: center;
+    }
+    .course-map img {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 4px;
+    }
+
+    /* ── Trophy row ── */
+    .trophy-row {
+      padding: 4px 36px 28px;
+    }
+    .trophy-grid {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .trophy-cell {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+    }
+    .trophy-cell img {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 220px;
+      border-radius: 4px;
+    }
+    .trophy-caption {
+      margin: 10px 0 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── Contact / CTA ── */
+    .contact-section {
+      background-color: var(--blue);
+      padding: 28px 36px;
+    }
+    .contact-heading {
+      margin: 0 0 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .contact-details {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      color: #dde4f0;
+      line-height: 1.9;
+      margin: 0 0 20px;
+    }
+    .contact-details strong { color: var(--white); }
+    .contact-details a { color: #a8c4f8; text-decoration: none; }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: var(--red);
+      border-radius: 4px;
+      padding: 14px 32px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background-color: var(--navy-dark);
+      padding: 20px 36px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      color: #7a8fb0;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .footer p { margin: 0 0 6px; }
+    .footer p:last-child { margin: 0; }
+    .footer strong { color: #aabce0; }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE BREAKPOINTS
+       ════════════════════════════════════════ */
+
+    /* ── Tablet (≤ 680px) ── */
+    @media only screen and (max-width: 680px) {
+      .card { border-radius: 4px; }
+      .section, .section-navy { padding: 22px 24px 16px; }
+      .section-sm { padding: 0 24px 16px; }
+      .section-navy-sm { padding: 0 24px 16px; }
+      .divider { padding: 0 24px; }
+      .pullquote { padding: 4px 24px 16px; }
+      .course-map { padding: 0 24px 22px; }
+      .trophy-row { padding: 4px 24px 22px; }
+      .contact-section { padding: 22px 24px; }
+      .footer { padding: 18px 24px; }
+      h1.section-heading, h1.section-heading-light { font-size: 22px; }
+      h2.sub-heading { font-size: 19px; }
+    }
+
+    /* ── Mobile (≤ 480px) ── */
+    @media only screen and (max-width: 480px) {
+      .page-wrapper { padding: 0; }
+      .card { border-radius: 0; box-shadow: none; }
+      .header { padding: 20px 20px; }
+      .section, .section-navy { padding: 20px 18px 14px; }
+      .section-sm { padding: 0 18px 14px; }
+      .section-navy-sm { padding: 0 18px 14px; }
+      .divider { padding: 0 18px; }
+      .pullquote { padding: 4px 18px 14px; }
+      .pullquote-text { font-size: 14px; }
+      .course-map { padding: 0 18px 20px; }
+      .trophy-row { padding: 4px 18px 20px; }
+      .trophy-grid { flex-direction: column; gap: 8px; }
+      .trophy-cell { flex: none; width: 100%; max-width: 280px; margin: 0 auto; }
+      .contact-section { padding: 20px 18px; }
+      .footer { padding: 16px 18px; }
+      h1.section-heading, h1.section-heading-light { font-size: 20px; letter-spacing: 0.5px; }
+      h2.sub-heading { font-size: 17px; }
+      h2.sub-heading-red { font-size: 15px; }
+      .body-text, .body-text-light { font-size: 14px; }
+      .cta-btn { display: block; text-align: center; padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <div class="card">
+
+    <!-- ── HEADER: Logo ── -->
+    <div class="header">
+      <img src="https://lh3.googleusercontent.com/d/124SQ1Ue6P7ojJMqOQvVkUY8oGCVdOzJL"
+           alt="Vineyard Race – Stamford Yacht Club" />
+    </div>
+
+    <!-- ── HERO PHOTO ── -->
+    <div class="hero-photo">
+      <img src="https://lh3.googleusercontent.com/d/1IKMM2ECNegEMtUbWYsyBvw-yBXmzUxYX"
+           alt="Vineyard Race fleet in action" />
+    </div>
+    <div class="photo-credit">Photos by Rick Bannerot</div>
+
+    <!-- ── INTRO ── -->
+    <div class="section">
+      <p class="body-text">
+        The <strong>Stamford Yacht Club</strong>, established in 1890, is a vibrant community
+        hub where the love for the water runs deep. As a founding member of US&nbsp;Sailing,
+        the Yacht Racing Association of Long Island Sound, the National Yacht Club Association,
+        and a founding member of the National Sailing Hall of Fame, the Club is a driving force
+        in the sailing world — involved in local, regional, and national sailing organizations.
+      </p>
+    </div>
+
+    <div class="divider"><hr /></div>
+
+    <!-- ── THE VINEYARD RACE ── -->
+    <div class="section">
+      <h1 class="section-heading">The Vineyard Race</h1>
+      <p class="body-text">
+        Labor Day weekend's Vineyard Race is a classic American yachting event. This 238-mile
+        course stretches from Shippan Point to the light tower at the entrance to Buzzard's Bay,
+        and then a return to the finish in Stamford Harbor.
+      </p>
+      <p class="body-text">
+        Begun in 1932, it has attracted the finest sailors and fastest boats. Those who are
+        successful nearly always credit local knowledge of these tricky waters — and a good
+        deal of luck. No sailing résumé is complete without Stamford Yacht Club's Vineyard Race.
+        The saltiest sailors who have completed ten or more Vineyard Races have earned entrance
+        into <strong>The Buzzard Society</strong>.
+      </p>
+    </div>
+
+    <!-- ── PULLQUOTE ── -->
+    <div class="pullquote">
+      <div class="pullquote-inner">
+        <p class="pullquote-text">
+          "The greatest distance races of the world have several things in common —
+          a challenging course, competitive fleets and an interesting array of famous yachts.
+          By those standards, the Stamford Yacht Club's Vineyard Race rates close to the top.
+          Like a miniature Fastnet, the Vineyard has a combination of coastal cruising,
+          where currents play a big role, a stretch of ocean sailing, and a mark to round —
+          the Buzzards Bay tower — before returning."
+        </p>
+        <p class="pullquote-attribution">— <em>Yachting Magazine</em></p>
+      </div>
+    </div>
+
+    <!-- ── SAILING ACTION PHOTO ── -->
+    <div class="section-photo">
+      <img src="https://lh3.googleusercontent.com/d/1ZeVpJQ-z6Y-iPGOwzam6KEkqhWFtlr7u"
+           alt="Vineyard Race sailing action" />
+    </div>
+
+    <!-- ── VINEYARD RACE EVENTS ── -->
+    <div class="section-navy">
+      <h1 class="section-heading-light">Vineyard Race Events</h1>
+      <p class="body-text-light">
+        The first starting signal for the Vineyard Race is at noon the Friday of Labor Day
+        weekend. This year it's scheduled for <strong style="color:#ffffff;">Friday, September&nbsp;4</strong>.
+        The 100+ boats are divided into 15 classes based on their handicap. Skippers choose
+        one of three courses: the Vineyard Course, the Seaflower Reef Course,
+        or the Cornfield Point Course.
+      </p>
+      <p class="body-text-light">
+        The boats begin returning to the finish line Saturday afternoon and evening, with the
+        last finishers generally back by early Sunday morning, in time for our end of season
+        celebration at Stamford Yacht Club.
+      </p>
+    </div>
+
+    <!-- ── THE COURSES ── -->
+    <div class="section-navy-sm">
+      <h2 class="sub-heading-red">The Courses</h2>
+      <p class="body-text-light">
+        Skippers can choose their challenge: the
+        <strong style="color:#ffffff;">238-nautical-mile Vineyard Course</strong>,
+        the <strong style="color:#ffffff;">143-nautical-mile Seaflower Reef Course</strong>,
+        or the <strong style="color:#ffffff;">116-nautical-mile Cornfield Point Course</strong>.
+      </p>
+    </div>
+
+    <!-- ── COURSE MAP ── -->
+    <div class="course-map">
+      <img src="https://lh3.googleusercontent.com/d/1AsnKCoYYOvCtBKFcHCqbp7l2fFcj5zOR"
+           alt="Vineyard Race Course Map – 3 Courses" />
+    </div>
+
+    <div class="divider"><hr /></div>
+
+    <!-- ── TROPHIES ── -->
+    <div class="section">
+      <h2 class="sub-heading">Northern Ocean Racing Trophy &amp; Northeast Lighthouse Series</h2>
+      <p class="body-text">
+        Several coveted perpetual awards require participation in the Vineyard Race and represent
+        the culmination of a successful offshore racing season. For ORC boats, this includes the
+        <strong>Northern Ocean Racing Trophy</strong>, established in 1961, and the
+        <strong>Double Handed Ocean Racing Trophy</strong>. For PHRF boats, the
+        <strong>New England Lighthouse Series</strong>, established in 2003, is the pinnacle
+        of offshore PHRF racing. For the winners, it means having their names inscribed on
+        perpetual trophies alongside some of the great sailing yachts of the past.
+      </p>
+    </div>
+
+    <div class="trophy-row">
+      <div class="trophy-grid">
+        <div class="trophy-cell">
+          <img src="https://lh3.googleusercontent.com/d/1jyCMc-y8B_uo5bDiXR1sCS4nOcbj0olG"
+               alt="Northern Ocean Racing Trophy" />
+          <p class="trophy-caption">Northern Ocean Racing Trophy</p>
+        </div>
+        <div class="trophy-cell">
+          <img src="https://lh3.googleusercontent.com/d/11CYDQxvnriBLOS7mVI_OgbJ_xpNtm7CL"
+               alt="New England Lighthouse Series Trophy" />
+          <p class="trophy-caption">New England Lighthouse Series Trophy</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"><hr /></div>
+
+    <!-- ── A CELEBRATION OF CHAMPIONS ── -->
+    <div class="section">
+      <h2 class="sub-heading">A Celebration of Champions</h2>
+      <p class="body-text">
+        The grand finale takes place Sunday evening under a magnificent tent overlooking
+        Stamford Harbor. Here, over 600 sailors, their families, and club members gather
+        to celebrate the Vineyard Race winners and celebrate the 2026 sailing season.
+        In addition to class trophies, special awards honoring exceptional fleet performance
+        and famous perpetuals will be presented.
+      </p>
+    </div>
+
+    <!-- ── CONTACT / CTA ── -->
+    <div class="contact-section">
+      <h2 class="contact-heading">Contact Us</h2>
+      <p class="contact-details">
+        <strong>Committee Chair:</strong>&nbsp;John Gianukakis<br/>
+        <strong>Email:</strong>&nbsp;<a href="mailto:vineyardrace@stamfordyc.com">vineyardrace@stamfordyc.com</a><br/>
+        <strong>Registration:</strong>&nbsp;<a href="https://yachtscoring.com/emenu/50775" target="_blank">yachtscoring.com</a>
+      </p>
+      <a class="cta-btn" href="https://yachtscoring.com/emenu/50775" target="_blank">Register Now &rarr;</a>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <div class="footer">
+      <p><strong>Stamford Yacht Club</strong><br/>97 Ocean Drive West, Stamford, CT 06902</p>
+      <p>You received this email because you expressed interest in the Vineyard Race.</p>
+      <p>&copy; 2026 Stamford Yacht Club. All rights reserved.</p>
+    </div>
+
+  </div><!-- /card -->
+</div><!-- /page-wrapper -->
+
+</body>
+</html>
